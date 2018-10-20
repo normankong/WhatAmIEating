@@ -1,0 +1,33 @@
+{
+  "name": "whatamieating",
+  "version": "1.0.0",
+  "description": "A Web UI connect to gcp auto ml for food detection",
+  "dependencies": {
+    "@google-cloud/automl": "latest",
+    "@google-cloud/datastore": "^2.0.0",
+    "dotenv": "^6.1.0",
+    "express": "4.16.2",
+    "multer": "latest",
+    "semver": "^5.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/normankong/WhatAmIEating.git"
+  },
+  "keywords": [
+    "FoodDetection",
+    "AutoML",
+    "GCP"
+  ],
+  "author": "Norman Kong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/normankong/WhatAmIEating/issues"
+  },
+  "homepage": "https://github.com/normankong/WhatAmIEating#readme"
+}
