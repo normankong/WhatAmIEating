@@ -4,29 +4,31 @@
 <head>
 
     <meta name="viewport" content="user-scalable=1.0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-title" content="Catories Detector">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="./images/icon.gif" />
+    <link rel="apple-touch-startup-image" href="./images/icon.gif">
+
     <title>Calories Detector</title>
 
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
 
-    <script src="https://unpkg.com/file-upload-with-preview"></script>
-
-
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.min.css">
+    <script src="./vendor/file-upload-with-preview.js"></script>
+    <link rel="stylesheet" type="text/css" href="./vendor/file-upload-with-preview.css">
     <style>
         html {
-                position: relative;
-                min-height: 100%;
+                height: 100%;
             }
 
             body {
                 width: 100%;
                 height: 100%;
                 color: #333;
-                font-family: 'Montserrat', sans-serif;
-                font-size: 1rem;
-                line-height: 1.5;
+                font-family: "Open Sans", sans-serif;
                 margin: 0;
+                background:rgb(239, 245, 245);
             }
 
             a {
@@ -38,88 +40,44 @@
                 color: #3f7ebd;
             }
 
-            /*Pre, Code*/
-
-            pre {
-                font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace
-            }
-
-            pre {
-                padding: .2rem .4rem;
-                font-size: 90%;
-                color: #333;
-                background-color:#EDEDE8;
-                border-radius: .25rem
-            }
-
-            /*Header*/
-
-            .header-container {
-                margin-top: 30px;
-                padding-left: 10px;
-                padding-right: 10px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .header-container__header-image {
-                max-width: 100%;
-                max-height: 60px;
-                margin-bottom: 20px;
-            }
-
-            .header-container__header-content {
-                font-size: 2.5rem;
-                margin-bottom: 20px;
-                margin-top: 0;
-                text-align: center;
-            }
-
-            .header-container__code {
-                margin-bottom: 10px;
-            }
-
             /*Upload Container*/
-
-            .demo-upload-container {
+            .upload-container {
                 padding: 10px 10px;
-                margin-left: auto;
-                margin-right: auto;
-                max-width: 1000px;
                 position: relative;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-around;
                 flex-wrap: wrap;
+                border-radius: 6px;
+                
+                margin : 10px 10px 10px 10px ;
+                box-shadow: 0px 0px 30px rgba(73, 78, 92, 0.15);
+                background: #fff;
+                transition: 0.4s;
             }
 
-            /*Info Container*/
-
-            .demo-info-container {
-                margin-left: auto;
-                margin-right: auto;
-                margin-bottom: 40px;
-                max-width: 300px;
+            .info-container {
+                padding: 10px 10px;
                 position: relative;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-around;
                 flex-wrap: wrap;
-
-                background: #4ea2f5;
-                padding: 15px 15px;
                 border-radius: 6px;
+    
+                margin : 10px 10px 10px 10px ;
+                box-shadow: 0px 0px 30px rgba(73, 78, 92, 0.15);
+                background: #6ed4c7;
                 text-align: center;
                 color: white;
             }
 
-            .demo-info-container a {
+            .info-container a {
                 color: white;
                 text-decoration: underline;
             }
 
-            .demo-info-container a:hover {
+            .info-container a:hover {
                 color: #eee;
             }
 
@@ -133,11 +91,11 @@
             .loader {
                 border: 16px solid #f3f3f3;
                 border-radius: 50%;
-                border-top: 16px solid #3498db;
+                border-top: 16px solid #1dc8cd;
                 width: 60px;
                 height: 60px;
-                -webkit-animation: spin 2s linear infinite; /* Safari */
-                animation: spin 2s linear infinite;
+                -webkit-animation: spin 1s linear infinite; /* Safari */
+                animation: spin 1s linear infinite;
                 margin: auto;
                 margin-bottom: 15px;
             }
@@ -154,65 +112,117 @@
             }
 
             .hideClass {display:none;}
+
+
+            #id_wrapper {
+                min-height: 100%;
+                position: relative;
+            }
+
+            #id_header {
+                height: 40px;
+                box-sizing: border-box;
+                background: linear-gradient(45deg, #1de099, #1dc8cd);
+                margin-bottom: 10px;
+                font-size: 15px;
+                padding-left : 10px;
+                text-align: left;
+                color : white;
+                display: table;
+                width: 100%;
+            }
+
+            #id_footer {
+                bottom: 0;
+                height: 40px;
+                box-sizing: border-box;
+                position: absolute;
+                width: 100%;
+                color :white;
+                background: linear-gradient(45deg, #1de099, #1dc8cd);
+                font-size: 15px;
+                margin: auto;
+                display: table;
+                text-align: center;
+            }
+            span {
+                display: table-cell;
+                vertical-align: middle;
+                font-family: "Montserrat", sans-serif;
+            }
+
+            #uploadFrm{
+                height :320px
+            }
+
+            .section-divider {
+                display: block;
+                width: 60px;
+                height: 3px;
+                background: #1dc8cd;
+                background: linear-gradient(0deg, #1dc8cd 0%, #55fabe 100%);
+                margin: 0 auto;
+                margin-bottom: 20px;
+            }
+
         </style>
 
 </head>
 
 <body>
 
-    <h1 class="header-container__header-content">
-        Calories Detector
-    </h1>
+    <div id="id_wrapper">
 
-
-    <div class="demo-upload-container">
-        <form id="uploadFrm" action="/upload" enctype="multipart/form-data" method="POST">
-            <div class="custom-file-container" data-upload-id="myFirstImage">
-                <label>Upload (Single File Max 5M) <a href="javascript:void(0)" class="custom-file-container__image-clear"
-                        title="Clear Image">&times;</a></label>
-                <label class="custom-file-container__custom-file">
-                    <input type="file" name="photo" class="custom-file-container__custom-file__custom-file-input"
-                        accept="image/*">
-                    <input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
-                    <span class="custom-file-container__custom-file__custom-file-control"></span>
-                </label>
-                <div class="custom-file-container__image-preview"></div>
-            </div>
-        </form>
-
-    </div>
-
-    <div class="loader hideClass" id="loader"></div>
-
-    <div class="demo-info-container">
-        <div>
-            <a href="javascript:void(0)" class="upload-info-button upload-info-button--first">Check</a>
-            <div id="result"></div>
+        <div id="id_header">
+            <span style="width:35px"><img src="./images/icon.gif" width="25px" /></span>
+            <span>Calories Detector</span>
         </div>
-    </div>
 
+        <div id="id_content">
+            <div class="upload-container">
+                <form id="uploadFrm" action="/upload" enctype="multipart/form-data" method="POST">
+                    <div class="custom-file-container" data-upload-id="myFirstImage">
+
+                        <label class="custom-file-container__custom-file">
+                            <input type="file" name="photo" class="custom-file-container__custom-file__custom-file-input"
+                                accept="image/*">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
+                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                        </label>
+                        <div class="custom-file-container__image-preview"></div>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="loader hideClass" id="loader"></div>
+            <div class="info-container hideClass">
+                <div id="result"></div>
+            </div>
+        </div>
+
+        <div id="id_footer">
+            <span>
+                &copy; Copyright. Thin Tech HK
+            </span>
+        </div>
+
+    </div>
 
     <script>
         // First upload
         /*eslint-disable no-undef */
-        var firstUpload = new FileUploadWithPreview('myFirstImage');
-        var firstUploadInfoButton = document.querySelector('.upload-info-button--first');
-        firstUploadInfoButton.addEventListener('click', function () {
+        var firstUpload = new FileUploadWithPreview('myFirstImage', {
+            cb: upload
+        });
 
-            console.log('First upload:', firstUpload, firstUpload.cachedFileArray);
-            if (firstUpload.cachedFileArray.length === 0)
-            {
-            	 $("#result").html("Please select a file");
-            	 return;cl
-            }
-            
+        function proceedUpload() {
+
             $(".loader").removeClass("hideClass");
-            $(".demo-info-container").addClass("hideClass");
-            $("#result").html("");
+            $(".info-container").addClass("hideClass");
 
             setTimeout(upload, 1000);
-
-        });
+        };
 
         function upload() {
             // Prepare AJAX Upload
@@ -221,19 +231,18 @@
                 url: '/upload',
                 type: 'POST',
                 data: formData,
-                async: false,
+                async: true,
                 cache: false,
                 contentType: false,
                 processData: false,
                 success: function (returndata) {
                     $(".loader").addClass("hideClass");
-                    $(".demo-info-container").removeClass("hideClass");
+                    $(".info-container").removeClass("hideClass");
                     $("#result").html(returndata);
                 },
                 error: function (err) {
                     $(".loader").addClass("hideClass");
-                    $(".demo-info-container").removeClass("hideClass");
-                    //alert("error in ajax form submission");
+                    $(".info-container").removeClass("hideClass");
                     $("#result").html(err.responseText);
                 }
             });
@@ -241,4 +250,5 @@
     </script>
 
 </body>
+
 </html>

@@ -8,6 +8,7 @@
     "dotenv": "^6.1.0",
     "express": "4.16.2",
     "multer": "latest",
+    "properties-reader": "0.0.16",
     "semver": "^5.6.0"
   },
   "devDependencies": {},

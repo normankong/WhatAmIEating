@@ -1,0 +1,11 @@
+mango_sago=楊枝甘露,200,Eat
+sweet_dumpling=湯圓,400,Eat
+stewed_egg=燉旦,200,Eat
+siu_mai=燒賣,400,Throw
+waffle=窩夫,120,Eat
+red_bean_paste=紅豆沙,400,Eat Less
+snow_ice=綿綿冰,200,Eat Less
+rice_roll=腸粉,80,Throw
+sesame_paste=芝麻糊,300,Eat
+fishball=魚旦,50,Eat
+stewed_egg=燉旦,80,Eat

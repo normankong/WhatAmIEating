@@ -6,6 +6,8 @@ const Datastore = require('@google-cloud/datastore');
 const automl = require('@google-cloud/automl').v1beta1;
 const express = require('express');
 const multer = require('multer');
+var PropertiesReader = require('properties-reader');
+var foodMapping = PropertiesReader('./data/food_mapping.txt');
 
 // Parameter setting
 const FILE_UPLOAD_MAX_SIZE = process.env.FILE_UPLOAD_MAX_SIZE ? process.env.FILE_UPLOAD_MAX_SIZE : 5242880;
@@ -68,7 +70,8 @@ app.post('/upload', upload.single('photo'), function (req, res, next) {
 			for (var i = 0; i < responses[0].payload.length; i++) {
 				var item = responses[0].payload[i];
 				var score = (item.classification.score * 100).toFixed(4);
-				result += `Result :  ${item.displayName} <br/> Score : ${score}% <br/> Calories : 100 <br/> Recommendation : Eat`;
+				var foodDetail = getFoodDetail(item);
+				result += `Result :  ${foodDetail.displayName} <br/> Score : ${score}% <br/> Calories : ${foodDetail.calories} <br/> Recommendation : ${foodDetail.recommendation}`;
 			}
 			if (result === "") result = "Unable to detect this object. What is it ?";
 			console.log(result);
@@ -86,6 +89,23 @@ app.post('/upload', upload.single('photo'), function (req, res, next) {
 		});
 
 });
+
+function getFoodDetail(item) {
+	var detail = {};
+	var tmp = foodMapping.get(item.displayName);
+	if (tmp == null)
+	{
+		detail.displayName = item.displayName;
+		detail.calories = 100;
+		detail.recommendation = "Eat";
+	}
+	else{
+		detail.displayName = tmp.split(",")[0];
+		detail.calories = tmp.split(",")[1];
+		detail.recommendation = tmp.split(",")[2];
+	}
+	return detail;
+}
 
 function addEvent(data) {
 	//console.log("Log Event :", data);
