@@ -1,2 +1,4 @@
 # WhatAmIEating
-What am I eating ? 
+
+A Mobile web client to upload Food photo to determine the Food category.
+
